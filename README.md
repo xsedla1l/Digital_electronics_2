@@ -1,7 +1,7 @@
 # Digital_electronics_2
 ## NICE
 ### A) VHDL architecture:
-```VHDL
+```c
    fun
 ```
 ### Image
