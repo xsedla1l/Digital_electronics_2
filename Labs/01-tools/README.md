@@ -134,4 +134,4 @@ int main(void)
 
 
 2. Scheme of Morse code application
-![alt text](https://github.com/xsedla1l/Digital_electronics_2/blob/main/Labs/01-tools/Image1.jpg)
+![alt text](https://github.com/xsedla1l/Digital_electronics_2/blob/main/Labs/01-tools/Images/Image1.png)
