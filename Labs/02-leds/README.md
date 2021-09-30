@@ -5,64 +5,36 @@ Link to GitHub repository:
    [https://github.com/xsedla1l/Digital_electronics_2](https://github.com/xsedla1l/Digital_electronics_2)
 
 
-### Blink example
- 
-   1. Draw two basic ways to connect a LED to the output pin of the microcontroller: LED active-low, LED active-high.
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-&nbsp;
-
-2. [Calculate LED resistor value](https://electronicsclub.info/leds.htm) for typical red and blue LEDs.
-
-&nbsp;
-![ohms law](Images/ohms_law.png)
-&nbsp;
-
-| **LED color** | **Supply voltage** | **LED current** | **LED voltage** | **Resistor value** |
-| :-: | :-: | :-: | :-: | :-: |
-| red | 5&nbsp;V | 20&nbsp;mA | | |
-| blue | 5&nbsp;V | 20&nbsp;mA | | |
-
-
-3. Draw the basic ways to connect a push button to the microcontroller input pin: button active-low, button active-high.
+## 1
 
 
 
 | **DDRB** | **Description** |
 | :-: | :-- |
 | 0 | Input pin |
-| 1 | |
+| 1 | Output pin |
 
 | **PORTB** | **Description** |
 | :-: | :-- |
 | 0 | Output low value |
-| 1 | |
+| 1 | Output high value |
 
 | **DDRB** | **PORTB** | **Direction** | **Internal pull-up resistor** | **Description** |
 | :-: | :-: | :-: | :-: | :-- |
 | 0 | 0 | input | no | Tri-state, high-impedance |
-| 0 | 1 | | | |
-| 1 | 0 | | | |
-| 1 | 1 | | | |
+| 0 | 1 | input | yes/no | Pxn will source current if ext. pulled low/Tri-state (Hi-Z) | - ak je ten bit nastaveny do nuly, tak su vypnute vsetky pud rezistory
+| 1 | 0 | output | no | Output Low (Sink) |
+| 1 | 1 | output | no | Output High (Source) |
 
-See [schematic of Arduino Uno board](../../Docs/arduino_shield.pdf) in docs folder of Digital-electronics-2 repository and find out which pins of ATmega328P can be used as input/output pins. To which pin is the LED L connected? Is it connected as active-low or active-high? Note that labels on Arduino `~3`, `~5`, etc. do not mean that the signals are inverted; the `~` symbol indicates that a PWM (Pulse-width modulation) signal can be generated on these pins.
+
 
 | **Port** | **Pin** | **Input/output usage?** |
 | :-: | :-: | :-- |
 | A | x | Microcontroller ATmega328P does not contain port A |
 | B | 0 | Yes (Arduino pin 8) |
-|   | 1 | Yes (Arduino pin 9) |
-|   | 2 | Yes (Arduino pin 10) |
-|   | 3 | Yes (Arduino pin 11) |
+|   | 1 | Yes (Arduino pin ~9) |
+|   | 2 | Yes (Arduino pin ~10) |
+|   | 3 | Yes (Arduino pin ~11) |
 |   | 4 | Yes (Arduino pin 12) |
 |   | 5 | Yes (Arduino pin 13) |
 |   | 6 | NO |
@@ -76,17 +48,16 @@ See [schematic of Arduino Uno board](../../Docs/arduino_shield.pdf) in docs fold
 |   | 6 | Yes - RESET pin |
 |   | 7 |  |
 | D | 0 | Yes (Arduino pin RX<-0) |
-|   | 1 |  |
-|   | 2 |  |
-|   | 3 |  |
-|   | 4 |  |
-|   | 5 |  |
-|   | 6 |  |
-|   | 7 |  |
+|   | 1 | Yes (Arduino pin TX->1) |
+|   | 2 | Yes (Arduino pin D2) |
+|   | 3 | Yes (Arduino pin ~D3) |
+|   | 4 | Yes (Arduino pin D4) |
+|   | 5 | Yes (Arduino pin ~D5) |
+|   | 6 | Yes (Arduino pin ~D6) |
+|   | 7 | Yes (Arduino pin D7) |
 
 
-### 
-
+## 2 Part of the C code:
  
 ```c
 int main(void)
