@@ -10,8 +10,8 @@ Link to your `Digital-electronics-2` GitHub repository:
 1. 
    * `|`    - It is OR     (logical sum)
    * `&`    - It is AND    (logical product)
-   * `^`    - It is XOR    
-   * `~`    - It is NOT    (logical negation)
+   * `^`    - It is NOT    (logical negation)    
+   * `~`    - It is XOR
    * `<<`   - It is "bit shift"
    * `>>`   - It is "bit shift"
 
