@@ -150,4 +150,4 @@ int main(void)
 
 
 ## 3 Knight Rider
-![alt text](https://github.com/xsedla1l/Digital_electronics_2/blob/main/Labs/02-leds/Images/Knight%20Rider.png)
+![alt text](https://github.com/xsedla1l/Digital_electronics_2/blob/main/Labs/02-leds/Images/Knight%20Rider0.1.png)
