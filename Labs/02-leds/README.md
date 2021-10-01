@@ -55,7 +55,7 @@ Link to GitHub repository:
 |   | 7 | Yes (Arduino pin D7) |
 
 
-## 2 Part of the C code:
+## 2 Part of the C code blink LED:
  
 ```c
 
@@ -99,7 +99,7 @@ int main(void)
 }
 
 ```
-
+## 2 Part of the C code push button:
 
 ```c
 
