@@ -149,5 +149,5 @@ int main(void)
 ```
 
 
-2. Scheme of Morse code application
-![alt text](https://github.com/xsedla1l/Digital_electronics_2/blob/main/Labs/01-tools/Images/Image1.png)
+## 3 Knight Rider
+![alt text](https://github.com/xsedla1l/Digital_electronics_2/blob/main/Labs/02-leds/Images/Knight%20Rider.png)
