@@ -136,8 +136,8 @@ int main(void)
             if(bit_is_clear(PIND, PUSH_BTN))
             {
                 PORTC = PORTC ^ (1<<LED_RED); 
-				PORTB = PORTB ^ (1<<LED_GREEN);
-				_delay_ms(BLINK_DELAY);
+		PORTB = PORTB ^ (1<<LED_GREEN);
+		_delay_ms(BLINK_DELAY);
             }      
            
     }
