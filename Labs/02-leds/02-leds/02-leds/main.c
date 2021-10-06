@@ -21,6 +21,7 @@
 /* Includes ----------------------------------------------------------*/
 #include <util/delay.h>     // Functions for busy-wait delay loops
 #include <avr/io.h>         // AVR device-specific IO definitions
+#include <avr/sfr_defs.h>
 
 /* Functions ---------------------------------------------------------*/
 /**********************************************************************
@@ -53,7 +54,7 @@ int main(void)
         //PORTB = PORTB ^ (1<<LED_GREEN);	 
         //PORTC = PORTC ^ (1<<LED_RED);
         //_delay_ms(BLINK_DELAY);
-            if(bit_is_clear(PIND4, PD4))
+            if(bit_is_clear(PUSH_BTN, PD4))
             {
                 PORTC = PORTC & ~(1<<LED_RED); 
             }
