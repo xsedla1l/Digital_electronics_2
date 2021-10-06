@@ -15,8 +15,8 @@ Link to GitHub repository:
 | `int8_t`   | 8 | -128 to 127 | Signed 8-bit integer |
 | `uint16_t` | 16 | 0, 1, ..., 65535 | Unsigned 16-bit integer |
 | `int16_t`  | 16 | -32768 to 32767 | Signed 16-bit intege |
-| `float`    |  | -3.4e+38, ..., 3.4e+38 | Single-precision floating-point |
-| `void`     |  |  |  |
+| `float`    | 32 | -3.4e+38, ..., 3.4e+38 | Single-precision floating-point |
+| `void`     | - | - |  |
 
 
 ### GPIO library
