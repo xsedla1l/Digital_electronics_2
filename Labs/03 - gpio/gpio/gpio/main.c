@@ -12,7 +12,9 @@
 
 /* Defines -----------------------------------------------------------*/
 #define LED_GREEN   PB5     // AVR pin where green LED is connected
-#define BLINK_DELAY 500
+#define LED_RED   PC0     // AVR pin where red LED is connected
+#define PUSH_BTN   PD7     // AVR pin where button is connected
+#define BLINK_DELAY 200
 #ifndef F_CPU
 # define F_CPU 16000000     // CPU frequency in Hz required for delay
 #endif
@@ -36,18 +38,24 @@ int main(void)
     GPIO_write_low(&PORTB, LED_GREEN);
 
     // Configure the second LED at port C
-
+    GPIO_config_output(&DDRC, LED_RED);
+    GPIO_write_low(&PORTC, LED_RED);
+    
 
     // Configure Push button at port D and enable internal pull-up resistor
-
+    GPIO_config_input_pullup(&DDRD, PUSH_BTN);
+    GPIO_read(&PORTD, PUSH_BTN);
 
     // Infinite loop
     while (1)
     {
-        // Pause several milliseconds
-        _delay_ms(BLINK_DELAY);
-
-        // WRITE YOUR CODE HERE
+        if(bit_is_clear(PIND, PUSH_BTN))
+        {
+            _delay_ms(BLINK_DELAY);
+            PORTB = PORTB ^ (1<<LED_GREEN);
+            PORTC = PORTC ^ (1<<LED_RED);
+            _delay_ms(BLINK_DELAY);
+        }
     }
 
     // Will never reach this
