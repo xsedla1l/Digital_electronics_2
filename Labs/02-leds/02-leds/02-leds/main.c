@@ -38,8 +38,8 @@ int main(void)
     PORTB = PORTB & ~(1<<LED_GREEN);
 
     // Configure the second LED at port C
-    //DDRC = DDRC | (1<<LED_RED); // posun jednotku o 5 - ostatne sa nemenia!
-    //PORTC = PORTC & ~(1<<LED_RED); // andujem 1 a na mojej poyicie je 0 - ostatne sa nemenia! 
+    DDRC = DDRC | (1<<LED_RED); // posun jednotku o 5 - ostatne sa nemenia!
+    PORTC = PORTC & ~(1<<LED_RED); // andujem 1 a na mojej poyicie je 0 - ostatne sa nemenia! 
 
     // Configure Push button at port D and enable internal pull-up resistor
      DDRD = DDRD | (0<<PUSH_BTN);
