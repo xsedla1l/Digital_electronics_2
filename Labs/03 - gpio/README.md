@@ -1,8 +1,8 @@
-# Lab 3: YOUR_FIRSTNAME FAMILYNAME
+# Lab 3: Marek Sedlacek (221068)
 
-Link to your `Digital-electronics-2` GitHub repository:
+Link to GitHub repository:
 
-   [https://github.com/...](https://github.com/...)
+   [https://github.com/xsedla1l/Digital_electronics_2](https://github.com/xsedla1l/Digital_electronics_2)
 
 
 ### Data types in C
@@ -15,14 +15,14 @@ Link to your `Digital-electronics-2` GitHub repository:
 | `uint16_t` | 16 | 0 to 65,535 | Unsigned 16-bit integer |
 | `int16_t`  | 16 | -32,768 to 32,767 | Signed 16-bit integer |
 | `float`    | 32 | -3.4e+38, ..., 3.4e+38 | Single-precision floating-point |
-| `void`     | - | - |  |
+| `void`     | - | - | No value |
 
 
 ### GPIO library
 
 1. In your words, describe the difference between the declaration and the definition of the function in C.
-   * Function declaration
-   * Function definition
+   * Function declaration - Hovorí o tom, ako funkciu volať a jej parametre. Tento súbor "header" má priponu "*.h"
+   * Function definition - Hovorí o tom, ktoré príkazy sa vykonajú, keď sa ta daná funkcia volá. Súbory majú priponu "*.c"
 
 2. Part of the C code listing with syntax highlighting, which toggles LEDs only if push button is pressed. Otherwise, the value of the LEDs does not change. Use function from your GPIO library. Let the push button is connected to port D:
 
