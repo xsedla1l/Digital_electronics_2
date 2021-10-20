@@ -28,15 +28,19 @@ int main(void)
     SEG_init();
 
     // Test of SSD: display number '3' at position 0
-    SEG_update_shift_regs(0b00001101, 0b00010000);
+    SEG_update_shift_regs(7, 3);
 
     // Configure 16-bit Timer/Counter1 for Decimal counter
     // Set the overflow prescaler to 262 ms and enable interrupt
 
+//     TIM0_overflow_262ms();
+//     TIM0_overflow_interrupt_enable();
 
+    TIM1_overflow_262ms();
+    TIM1_overflow_interrupt_enable();
+    
     // Enables interrupts by setting the global interrupt mask
-
-
+    sei();
     // Infinite loop
     while (1)
     {
@@ -55,6 +59,22 @@ int main(void)
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
+    static uint8_t val = 0;  // This line will only run the first time
     // WRITE YOUR CODE HERE
+    static uint8_t pos = 0;
+    val++;
+    if(val > 9)
+    val = 0;
+    SEG_update_shift_regs(val, 0);
+}
 
+ISR(TIMER0_OVF_vect)
+{
+    static uint8_t val = 0;  // This line will only run the first time
+    // WRITE YOUR CODE HERE
+    static uint8_t pos = 0;
+    val++;
+    if(val > 5)
+    val = 0;
+    SEG_update_shift_regs(val, 0);
 }
