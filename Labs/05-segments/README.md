@@ -18,10 +18,15 @@ Link to GitHub repository:
  * Function: Timer/Counter1 overflow interrupt
  * Purpose:  Increment counter value from 00 to 59.
  **********************************************************************/
-ISR(TIMER1_OVF_vect)
-{
-    // WRITE YOUR CODE HERE
-
+uint8_t DIG1 = 0; // showed number on DIG 1
+uint8_t DIG2 = 0; // showed number on DIG 2
+ISR(TIMER1_OVF_vect){ 
+    DIG1++; 
+    if (DIG1 == 10){ 
+        DIG1 = 0; 
+        DIG2++;   
+        if (DIG2 == 6) DIG2 = 0; 
+    }
 }
 ```
 
@@ -30,12 +35,16 @@ ISR(TIMER1_OVF_vect)
  * Function: Timer/Counter0 overflow interrupt
  * Purpose:  Display tens and units of a counter at SSD.
  **********************************************************************/
-ISR(TIMER0_OVF_vect)
-{
-    static uint8_t pos = 0;
+ISR(TIMER0_OVF_vect){ 
+    static uint8_t position = 0;
+    
+    if (position == 0){ SEG_update_shift_regs(digit1,0;
+    } 
+    else{ SEG_update_shift_regs(digit2,1); 
+    }
 
-    // WRITE YOUR CODE HERE
-
+    position++; 
+    if (position > 1) position = 0; 
 }
 ```
 
