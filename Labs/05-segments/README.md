@@ -8,8 +8,8 @@ Link to GitHub repository:
 ### 7-segment library
 
 1. In your words, describe the difference between Common Cathode and Common Anode 7-segment display.
-   * CC SSD
-   * CA SSD
+   * CC SSD - CC je skratka "Common cathode" čo v preklade znamená "spoločná katóda". Takže všetky katódy LED diód v dispaly sú spojené do jednej. Segmenty display riadíme pomocov anód - ACTIVE HIGH.
+   * CA SSD - CA je skratka "Common anode" čo v preklade znamená "spoločná anoda". Takže všetky anody LED diód v dispaly sú spojené do jednej. Segmenty display riadíme pomocov katód - ACTIVE LOW.
 
 2. Code listing with syntax highlighting of two interrupt service routines (`TIMER1_OVF_vect`, `TIMER0_OVF_vect`) from counter application with at least two digits, ie. values from 00 to 59:
 
@@ -50,4 +50,6 @@ Consider a kitchen alarm with a 7-segment display, one LED and three push button
 
 1. Scheme of kitchen alarm; do not forget the supply voltage. The image can be drawn on a computer or by hand. Always name all components and their values.
 
-   ![your figure]()
+![alt text](https://github.com/xsedla1l/Digital_electronics_2/blob/main/Labs/05-segments/Images/mega328P.png)
+![alt text](https://github.com/xsedla1l/Digital_electronics_2/blob/main/Labs/05-segments/Images/7-seg.png)
+![alt text](https://github.com/xsedla1l/Digital_electronics_2/blob/main/Labs/05-segments/Images/BTNS.png)
