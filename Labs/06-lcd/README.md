@@ -61,4 +61,4 @@ Consider a kitchen alarm with an LCD, one LED and three push buttons: start, +1 
 
 ![alt text](https://github.com/xsedla1l/Digital_electronics_2/blob/main/Labs/05-segments/Images/mega328P.png)
 ![alt text](https://github.com/xsedla1l/Digital_electronics_2/blob/main/Labs/05-segments/Images/7-seg.png)
-![alt text](https://github.com/xsedla1l/Digital_electronics_2/blob/main/Labs/05-segments/Images/BTNS.png)
+![alt text](https://github.com/xsedla1l/Digital_electronics_2/blob/main/Labs/06-lcd/Images/251163004_4694105613980643_4416927170009693356_n.jpg)
