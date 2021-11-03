@@ -56,7 +56,7 @@ int main(void)
     TIM1_overflow_262ms();
     TIM1_overflow_interrupt_enable();
     // Initialize UART to asynchronous, 8N1, 9600
-    uart_init(UART_BAUD_SELECT(9600,F_CPU));
+    //uart_init(UART_BAUD_SELECT(9600,F_CPU));
     // Enables interrupts by setting the global interrupt mask
     sei();
 
@@ -89,6 +89,50 @@ ISR(TIMER1_OVF_vect)
  **********************************************************************/
 ISR(ADC_vect)
 {
-    // WRITE YOUR CODE HERE
+    uint16_t value = 0;
+    char lcd_string[4] = "0000";
+    value = ADC;  
+    
+    //Clear previous value
+    lcd_gotoxy(8,0);
+    lcd_puts("    ");
+    
+    //Put new value to LCD display
+    itoa(value, lcd_string, 10);  // Convert dec to string
+    lcd_gotoxy(8,0);
+    lcd_puts(lcd_string);
+    
+    // send the same value to UART
+    uart_puts(lcd_string);
+    uart_puts(" ");        
+        
+    //Clear previous value
+    lcd_gotoxy(13,0);
+    lcd_puts("    ");
+    //Put new value to LCD
+        
+    //display value in hex
+    itoa(value, lcd_string, 16);    // Convert dec to string
+    lcd_gotoxy(13,0);
+    lcd_puts(lcd_string);
+        
+    //display what button was pressed
+    lcd_gotoxy(8,1);
+    lcd_puts("    ");
+    lcd_gotoxy(12,1);
+    lcd_puts("    ");
+        
+        
+    lcd_gotoxy(8, 1);                // Copy ADC result to 16-bit variable
+    itoa(value, lcd_string, 10);     // Convert dec value to string
 
+    if (value>1000) { lcd_puts("NONE");}
+        if ((value>600)&&(value<1000)) { lcd_puts("SELECT");}
+            if ((value>350)&&(value<450)) { lcd_puts("LEFT");}
+                if ((value>200)&&(value<270)) { lcd_puts("DOWN");}
+                    if ((value>5)&&(value<120)) { lcd_puts("UP");}
+                        if (value==0) { lcd_puts("RIGHT");}
+         
+         // lcd_puts(lcd_string);
+         ;
 }
