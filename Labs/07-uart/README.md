@@ -22,6 +22,7 @@ Link to GitHub repository:
 
 ```c
 /**********************************************************************
+ * Marek Sedlacek
  * Function: ADC complete interrupt
  * Purpose:  Display value on LCD and send it to UART.
  **********************************************************************/

@@ -87,6 +87,7 @@ ISR(TIMER1_OVF_vect)
 }
 
 /**********************************************************************
+ * Marek Sedlacek
  * Function: ADC complete interrupt
  * Purpose:  Display value on LCD and send it to UART.
  **********************************************************************/
