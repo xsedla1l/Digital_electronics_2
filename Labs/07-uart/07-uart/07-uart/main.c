@@ -17,6 +17,9 @@
 #include "lcd.h"            // Peter Fleury's LCD library
 #include <stdlib.h>         // C library. Needed for conversion function
 #include "uart.h"           // Peter Fleury's UART library
+#ifndef F_CPU
+# define F_CPU 16000000     // CPU frequency in Hz required for delay
+#endif
 
 /* Function definitions ----------------------------------------------*/
 /**********************************************************************
@@ -56,7 +59,7 @@ int main(void)
     TIM1_overflow_262ms();
     TIM1_overflow_interrupt_enable();
     // Initialize UART to asynchronous, 8N1, 9600
-    //uart_init(UART_BAUD_SELECT(9600,F_CPU));
+    uart_init(UART_BAUD_SELECT(9600,F_CPU));
     // Enables interrupts by setting the global interrupt mask
     sei();
 
@@ -133,6 +136,6 @@ ISR(ADC_vect)
                     if ((value>5)&&(value<120)) { lcd_puts("UP");}
                         if (value==0) { lcd_puts("RIGHT");}
          
-         // lcd_puts(lcd_string);
-         ;
+          lcd_puts(lcd_string);
+     ;
 }
