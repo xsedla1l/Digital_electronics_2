@@ -33,14 +33,7 @@
          0b01111,
          0b00011,
          0b00001,
-         0b00000,
-         0b01110,
-         0b11111,
-         0b11111,
-         0b11111,
-         0b11110,
-         0b11000,
-         0b10000
+        
      };
 int main(void)
 {
@@ -55,7 +48,7 @@ int main(void)
 
     // Set pointer to beginning of CGRAM memory
     lcd_command(1 << LCD_CGRAM);
-    for (uint8_t i = 0; i <16; i++)
+    for (uint8_t i = 0; i <7; i++)
     {
         // Store all new chars to memory line by line
         lcd_data(customChar[i]);
