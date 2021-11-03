@@ -135,7 +135,5 @@ ISR(ADC_vect)
                 if ((value>200)&&(value<270)) { lcd_puts("DOWN");}
                     if ((value>5)&&(value<120)) { lcd_puts("UP");}
                         if (value==0) { lcd_puts("RIGHT");}
-         
-          lcd_puts(lcd_string);
      ;
 }
