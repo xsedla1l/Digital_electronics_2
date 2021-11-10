@@ -8,93 +8,84 @@ Link to GitHub repository:
 ### Analog-to-Digital Conversion
 
 1. Complete table with voltage divider, calculated, and measured ADC values for all five push buttons.
-
+![alt text](https://github.com/xsedla1l/Digital_electronics_2/blob/main/Labs/07-uart/Images/schema.png)
    | **Push button** | **PINS** | 
    | :-: | :-: |
-   | PWM generators from Timer0, Timer1, Timer2 | 3, 5, 6, 9, 10, 11 		| 
+   | PWM generators from Timer0, Timer1, Timer2 | PD3, PD5, PD6, PB1, PB2, PB3 		| 
    |analog channels for ADC | PC0, PC1, PC2, PC3, PC4, PC5| 
    |UART pins   | PD1, PD0  	|   
    | I2C pins  | PC4, PC5    	|  
    | SPI pins | PB2, PB3, PB4, PB6  |  
    | external interrupt pins INT0, INT1  | INT0 - PD2, INT1 - PD3   	|  
 
-2. Code listing of ACD interrupt service routine for sending data to the LCD/UART and identification of the pressed button. Always use syntax highlighting and meaningful comments:
+### I2C
+
+1. Code listing of Timer1 overflow interrupt service routine for scanning I2C devices and rendering a clear table on the UART.
 
 ```c
 /**********************************************************************
- * Marek Sedlacek
- * Function: ADC complete interrupt
- * Purpose:  Display value on LCD and send it to UART.
+ * Function: Timer/Counter1 overflow interrupt
+ * Purpose:  Update Finite State Machine and test I2C slave addresses 
+ *           between 8 and 119.
  **********************************************************************/
-ISR(ADC_vect)
+ISR(TIMER1_OVF_vect)
 {
-    uint16_t value = 0;
-    char lcd_string[4] = "0000";
-    value = ADC;  
-    
-    //Clear previous value
-    lcd_gotoxy(8,0);
-    lcd_puts("    ");
-    
-    //Put new value to LCD display
-    itoa(value, lcd_string, 10);  // Convert dec to string
-    lcd_gotoxy(8,0);
-    lcd_puts(lcd_string);
-    
-    // send the same value to UART
-    uart_puts(lcd_string);
-    uart_puts(" ");        
-        
-    //Clear previous value
-    lcd_gotoxy(13,0);
-    lcd_puts("    ");
-    //Put new value to LCD
-        
-    //display value in hex
-    itoa(value, lcd_string, 16);    // Convert dec to string
-    lcd_gotoxy(13,0);
-    lcd_puts(lcd_string);
-        
-    //display what button was pressed
-    lcd_gotoxy(8,1);
-    lcd_puts("    ");
-    lcd_gotoxy(12,1);
-    lcd_puts("    ");
-        
-        
-    lcd_gotoxy(8, 1);                // Copy ADC result to 16-bit variable
-    itoa(value, lcd_string, 10);     // Convert dec value to string
+    static state_t state = STATE_IDLE;  // Current state of the FSM
+    static uint8_t addr = 7;            // I2C slave address
+    uint8_t result = 1;                 // ACK result from the bus
+    char uart_string[2] = "00"; // String for converting numbers by itoa()
 
-    if (value>1000) { lcd_puts("NONE");}
-        if ((value>600)&&(value<1000)) { lcd_puts("SELECT");}
-            if ((value>350)&&(value<450)) { lcd_puts("LEFT");}
-                if ((value>200)&&(value<270)) { lcd_puts("DOWN");}
-                    if ((value>5)&&(value<120)) { lcd_puts("UP");}
-                        if (value==0) { lcd_puts("RIGHT");}
-     ;
+    // FSM
+    switch (state)
+    {
+    // Increment I2C slave address
+    case STATE_IDLE:
+        addr++;
+        // If slave address is between 8 and 119 then move to SEND state
+
+        break;
+    
+    // Transmit I2C slave address and get result
+    case STATE_SEND:
+        // I2C address frame:
+        // +------------------------+------------+
+        // |      from Master       | from Slave |
+        // +------------------------+------------+
+        // | 7  6  5  4  3  2  1  0 |     ACK    |
+        // |a6 a5 a4 a3 a2 a1 a0 R/W|   result   |
+        // +------------------------+------------+
+        result = twi_start((addr<<1) + TWI_WRITE);
+        twi_stop();
+        /* Test result from I2C bus. If it is 0 then move to ACK state, 
+         * otherwise move to IDLE */
+
+        break;
+
+    // A module connected to the bus was found
+    case STATE_ACK:
+        // Send info about active I2C slave to UART and move to IDLE
+
+        break;
+
+    // If something unexpected happens then move to IDLE
+    default:
+        state = STATE_IDLE;
+        break;
+    }
 }
-
 ```
 
+2. (Hand-drawn) picture of I2C signals when reading checksum (only 1 byte) from DHT12 sensor. Indicate which specific moments control the data line master and which slave.
 
-### UART communication
+   ![your figure]()
 
-1. (Hand-drawn) picture of UART signal when transmitting three character data `De2` in 4800 7O2 mode (7 data bits, odd parity, 2 stop bits, 4800&nbsp;Bd).
+### Meteo station
 
- ![alt text](https://github.com/xsedla1l/Digital_electronics_2/blob/main/Labs/07-uart/Images/De2.png) 
+Consider an application for temperature and humidity measurement and display. Use combine sensor DHT12, real time clock DS3231, LCD, and one LED. Application display time in hours:minutes:seconds at LCD, measures both temperature and humidity values once per minut, display both values on LCD, and when the temperature is too high, the LED starts blinking.
 
+1. FSM state diagram picture of meteo station. The image can be drawn on a computer or by hand. Concise name of individual states and describe the transitions between them.
 
-
-2. Flowchart figure for function `uint8_t get_parity(uint8_t data, uint8_t type)` which calculates a parity bit of input 8-bit `data` according to parameter `type`. The image can be drawn on a computer or by hand. Use clear descriptions of the individual steps of the algorithms.
-
-![alt text](https://github.com/xsedla1l/Digital_electronics_2/blob/main/Labs/07-uart/Images/flowchart.png)
-
-
-### Temperature meter
-
-Consider an application for temperature measurement and display. Use temperature sensor [TC1046](http://ww1.microchip.com/downloads/en/DeviceDoc/21496C.pdf), LCD, one LED and a push button. After pressing the button, the temperature is measured, its value is displayed on the LCD and data is sent to the UART. When the temperature is too high, the LED will start blinking.
-
-1. Scheme of temperature meter. The image can be drawn on a computer or by hand. Always name all components and their values.
+   
 
 ![alt text](https://github.com/xsedla1l/Digital_electronics_2/blob/main/Labs/07-uart/Images/schema.png)
 
