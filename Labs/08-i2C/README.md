@@ -8,14 +8,14 @@ Link to GitHub repository:
 ### Analog-to-Digital Conversion
 
 1. Complete table with voltage divider, calculated, and measured ADC values for all five push buttons.
-![alt text](https://github.com/xsedla1l/Digital_electronics_2/blob/main/Labs/07-uart/Images/schema.png)
-   | **Push button** | **PINS** | 
-   | :-: | :-: |
+![alt text](https://github.com/xsedla1l/Digital_electronics_2/tree/main/Labs/08-i2C/Images)
+   | **Push button** 	| **PINS** 			| 
+   | :-: 		| :-: |
    | PWM generators from Timer0, Timer1, Timer2 | PD3, PD5, PD6, PB1, PB2, PB3 		| 
    |analog channels for ADC | PC0, PC1, PC2, PC3, PC4, PC5| 
-   |UART pins   | PD1, PD0  	|   
-   | I2C pins  | PC4, PC5    	|  
-   | SPI pins | PB2, PB3, PB4, PB6  |  
+   |UART pins   	| PD1, PD0  	|   
+   | I2C pins 	 	| PC4, PC5    	|  
+   | SPI pins 		| PB2, PB3, PB4, PB6  |  
    | external interrupt pins INT0, INT1  | INT0 - PD2, INT1 - PD3   	|  
 
 ### I2C
