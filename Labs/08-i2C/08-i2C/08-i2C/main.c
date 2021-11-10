@@ -6,7 +6,7 @@
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
  * Copyright (c) 2017-Present Tomas Fryza
- * Dept. of Radio Electronics, Brno University of Technology, Czechia
+ * Dept. of Radio Electronics, Brno University of Technology, Czechoslovakia
  * This work is licensed under the terms of the MIT license.
  * 
  **********************************************************************/
@@ -36,7 +36,7 @@ typedef enum {              // FSM declaration
  * Function: Main function where the program execution begins
  * Purpose:  Use Timer/Counter1 and send I2C (TWI) address every 33 ms.
  *           Send information about scanning process to UART.
- * Returns:  none
+ * Returns:  none 
  **********************************************************************/
 int main(void)
 {
@@ -75,7 +75,7 @@ int main(void)
  *           between 8 and 119.
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
-{
+{ 
     static state_t state = STATE_IDLE;  // Current state of the FSM
     static uint8_t addr = 7;            // I2C slave address
     uint8_t result = 1;                 // ACK result from the bus
