@@ -96,7 +96,7 @@ ISR(TIMER1_OVF_vect)
 
 2. (Hand-drawn) picture of I2C signals when reading checksum (only 1 byte) from DHT12 sensor. Indicate which specific moments control the data line master and which slave.
 
-![alt text](https://github.com/xsedla1l/Digital_electronics_2/blob/main/Labs/07-uart/Images/schema.png)
+![alt text](https://github.com/xsedla1l/Digital_electronics_2/blob/main/Labs/08-i2C/Images/I2C.png)
 
 ### Meteo station
 
@@ -106,7 +106,7 @@ Consider an application for temperature and humidity measurement and display. Us
 
    
 
-![alt text](https://github.com/xsedla1l/Digital_electronics_2/blob/main/Labs/07-uart/Images/schema.png)
+![alt text](https://github.com/xsedla1l/Digital_electronics_2/blob/main/Labs/08-i2C/Images/FSM.png)
 
 
 
